@@ -15,23 +15,90 @@
 //    Variabile:
 //    În PHP, variabilele încep cu un simbol $ urmat de numele variabilei.
 //    Numele unei variabile trebuie să înceapă cu o literă sau cu un underscore (_).
-    $title = "Variables:";
+    echo "Variables: ";
     $name = 'Deiu';
     $varsta = 30;
     echo $name . " " . $varsta;
     
+    echo "<br><br>";
 //    Constante:
 //    Constantele sunt valori care nu se pot modifica pe parcursul executării scriptului.
 //    Pentru a defini o constantă, se utilizează funcția define() sau cuvântul cheie const într-o clasă.
+    echo "Constante: ";
     define("PI", 3.141592);
     //sau intr-o clasa
     class Cerc {
         const PI = 3.141592;
     }
     echo PI;
+    
+    echo "<br><br>";
+    
+    echo "Array: ";
+    echo "<br><br>";
+//    Crearea unui Array: Există două tipuri de array-uri în PHP, indexate numeric și asociative.
+//    Accesarea elementelor unui Array: Poți accesa un element al unui array folosind indicele sau cheia acestuia.
+//     Array indexat numeric:
+    $array = array("ion", "vasile", "gheorghe");
+       echo $array[1];
+    echo "<br><br>";
+
+    $array = array("cheie1" => "element1", "cheie2" => "element2", "cheie3" => "element3");
+//      Pentru array asociativ:
+    echo $array["cheie1"];
+    echo "<br><br>";
+    
+//    Modificarea elementelor unui Array: Poți modifica valoarea unui element al unui array în mod similar cu accesarea acestuia.
+    $array[1] = "element nou";
+    echo $array[1];
+    echo "<br><br>";
+    $array["cheie1"] = "element nou";
+    echo $array["cheie1"];
+    echo "<br><br>";
+    
+//    Numărarea elementelor unui Array: Poți folosi funcția count() pentru a obține numărul de elemente dintr-un array.
+    echo count($array);     // Afișează numărul de elemente din array
+    echo "<br><br>";
+
+//    Parcurgerea unui Array: Poți parcurge un array folosind diverse structuri de control, cum ar fi for, foreach.
+    foreach ($array as $cheie => $element) {
+        echo "Cheia: $cheie ; Elementul: $element <br>";
+    }
+    echo "<br><br>";
+    
+//    Sortarea unui Array: PHP oferă mai multe funcții pentru sortarea array-urilor, cum ar fi sort(), asort(), ksort(), etc.
+    sort($array);   // Sortează array-ul în ordine crescătoare
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     ?>
 
-    <h1><?php echo $title; ?></h1>
+    
 </body>
 
 </html>
