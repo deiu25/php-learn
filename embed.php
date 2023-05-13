@@ -105,10 +105,40 @@
             echo "Variabila nu se gaseste";
     }
     
+    echo "<br>";
+    echo "<br>";
     
+//       Buclele While și Do-While: Alte forme de bucle care permit executarea repetată a unui bloc de cod bazată pe o anumită condiție.
+    $i = 0;
+    while($i < 5) {
+        echo $i;
+        $i++;
+    }
     
+    echo "<br>";
+    echo "<br>";
     
+    $i = 0;
+    do {
+        echo $i;
+        $i++;
+    } while ($i < 5);
+    echo "<br>";
+    echo "<br>";
     
+//       Buclele For și Foreach: Acestea permit executarea repetată a unui bloc de cod.   
+   for ($i = 0; $i < 5; $i++) {
+    echo $i;
+}
+    
+    echo "<br>";
+    echo "<br>";
+
+$array = array(1, 2, 3, 4, 5);
+foreach ($array as $value) {
+    echo $value;
+}
+ 
     
     
     
