@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
 </head>
+
 <body>
-<?php
+    <?php
 
 //      Funcții pentru lucrul cu string-uri:
     
@@ -36,9 +38,9 @@
     $content = fread($file, filesize("embed.php")); // Citește conținutul fișierului "test.txt"
 
     fclose($file); // Închide fișierul "test.txt"
-
     
     
 ?>
 </body>
+
 </html>
