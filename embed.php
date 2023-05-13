@@ -66,15 +66,44 @@
     }
     echo "<br><br>";
     
+    
 //    Sortarea unui Array: PHP oferă mai multe funcții pentru sortarea array-urilor, cum ar fi sort(), asort(), ksort(), etc.
     sort($array);   // Sortează array-ul în ordine crescătoare
     
     
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+    //CONTROL STRUCTURES
     
+//      Instrucțiunea If: Aceasta este cea mai simplă formă de control. Ea execută un bloc de cod dacă o anumită condiție este îndeplinită.   
+    $a = 10;
+    if($a > 5) {
+        echo "Variabila este mai mare decat 5" . "<br><br>";
+    }
     
-    
-    
-    
+//      Instrucțiunea If-Else: Adaugă o alternativă la instrucțiunea if. Dacă condiția if este falsă, codul din blocul else este executat.    
+    $b = 2;
+    if($b > 5){
+        echo "Variabila este mai mare decat 5";
+    } else {
+        echo "Variabila este mai mica decat 5";
+    }
+   echo "<br>";
+    echo "<br>";
+//       Instrucțiunea Switch: Este o altă formă de control care permite verificarea unei variabile împotriva unei serii de valori.    
+    $a = 3;
+    switch ($a) {
+        case 1:
+            echo "Variabila este 1";
+            break;
+        case 2:
+            echo "Variabila este 2";
+            break;
+        case 3:
+            echo "Variabila este 3";
+            break;
+        default:
+            echo "Variabila nu se gaseste";
+    }
     
     
     
