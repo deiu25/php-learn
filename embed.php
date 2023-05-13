@@ -139,21 +139,7 @@ foreach ($array as $value) {
     echo $value;
 }
  
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     ?>
 
