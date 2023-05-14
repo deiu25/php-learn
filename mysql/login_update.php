@@ -1,27 +1,8 @@
-<?php
+<?php include "db.php"; ?>
 
-if ( isset( $_POST['submit'] ) ) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    
-    $connection = mysqli_connect( 'localhost', 'root', '', 'loginapp' );
+<?php include "functions.php"; ?>
 
-        if ($connection) {
-            echo "We are connected";
-        } else {
-            die( "Database connection failed" );
-        }
-}
-//    } else {
-//        echo "Wrong Username or Password";
-//    }
-//
-//    if ( $username && $password ) {
-//        echo $username;
-//        echo $password;
-//}
 
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +17,7 @@ if ( isset( $_POST['submit'] ) ) {
 <body>
     <div class="container">
         <div class="col-sm-6">
-            <form action="login.php" method="post">
+            <form action="login_create.php" method="post">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" name="username" class="form-control">
@@ -45,7 +26,14 @@ if ( isset( $_POST['submit'] ) ) {
                     <label for="password">Password</label>
                     <input type="password" name="password" class="form-control">
                 </div>
-                <input class="btn btn-primary" type="submit" name="submit" value="Submit">
+                <div class="form-group">
+                    <select name="id" id="">
+                        <?php 
+                        showAllData();
+                        ?>
+                    </select>
+                </div>
+                <input class="btn btn-primary" type="submit" name="submit" value="Update">
             </form>
         </div>
     </div>
