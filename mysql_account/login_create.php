@@ -1,59 +1,9 @@
-<?php
+<?php include "db.php"; ?>
+<?php include "functions.php"; ?>
 
-if ( isset( $_POST['submit'] ) ) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $email = $_POST['email'];
+<?php CreateAccount(); ?>
 
-    $connection = mysqli_connect( 'localhost', 'root', '', 'loginapp' );
-
-    if ( $connection ) {
-        echo "Account Created";
-    } else {
-        die( "Database connection failed" );
-    }
-    
-    $query = "INSERT INTO users(username, password, email)";
-    $query .= "VALUES ('$username', '$password', '$email')";
-    
-    $result = mysqli_query($connection, $query);
-    
-    if(!$result) {
-        die('Query Failed' . mysqli_error());
-    }
-}
-//    } else {
-//        echo "Wrong Username or Password";
-//    }
-//
-//    if ( $username && $password ) {
-//        echo $username;
-//        echo $password;
-//}
-
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-
-
-
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-    <!-- MDB -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.css" rel="stylesheet" />
-
-
-</head>
-
-<body>
+<?php include "includes/header.php" ?>
 
     <section class="vh-100" style="background-color: #eee;">
         <div class="container h-100">
@@ -126,12 +76,7 @@ if ( isset( $_POST['submit'] ) ) {
             </div>
         </div>
     </section>
-
-
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.js"></script>
 
-
-</body>
-
-</html>
+<?php include "includes/footer.php" ?>
