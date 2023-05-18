@@ -1,7 +1,9 @@
 <?php include "db.php"; ?>
 <?php include "functions.php"; ?>
 
-<?php CreateAccount(); ?>
+<?php $errors = CreateAccount(); ?>
+
+<?php ValidateErrors($errors); ?>
 
 <?php include "includes/header.php" ?>
 

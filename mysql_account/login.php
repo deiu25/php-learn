@@ -1,24 +1,9 @@
-<?php include "db.php";
-?>
+<?php include "db.php"; ?>
+<?php include "functions.php"; ?>
 
-<?php
+<?php $errors = Login(); ?>
 
-if ( isset( $_POST['submit'] ) ) {
-    global $connection;
-    
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    
-    $connection = mysqli_connect( 'localhost', 'root', '', 'loginapp' );
-
-        if ($connection) {
-            echo "We are connected";
-        } else {
-            die( "Database connection failed" );
-        }
-}
-
-?>
+<?php ValidateErrors($errors); ?>
 
 <?php include "includes/header.php" ?>
    
@@ -52,7 +37,7 @@ if ( isset( $_POST['submit'] ) ) {
                                         </div>
 
                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                            <button type="submit" name="submit" value="Register" class="btn btn-primary btn-lg">LogIn</button>
+                                            <button type="submit" name="submit" value="Login" class="btn btn-primary btn-lg">LogIn</button>
                                         </div>
 
                                     </form>
