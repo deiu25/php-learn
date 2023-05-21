@@ -37,18 +37,23 @@ function Login() {
             
             $query = "SELECT * FROM users WHERE email = '$email'";
             $result = mysqli_query($connection, $query);
+            if (!$result) {
+                die('Error in query: ' . mysqli_error($connection)); // Verify if the query was successful
+            }
             if (mysqli_num_rows($result) > 0) {
                 $user = mysqli_fetch_assoc($result);
-                
-//                  echo 'Database Password Hash: ' . $user['password'] . '<br/>'; // Print the database password hash
-//                echo 'User input password: ' . $password . '<br/>'; // Print the user input password
-//                echo 'Password verify result: ' . (password_verify($password, $user['password']) ? 'true' : 'false') . '<br/>'; // Print password verification result
-//                
-                if (password_verify($password, $user['password'])) {
+
+                //     print_r ($user);
+                //  echo 'Database Password Hash: ' . $user['password'] . '<br/>'; // Print the database password hash
+                //  echo 'User input password: ' . $password . '<br/>'; // Print the user input password
+                //  echo 'Password verify result: ' . (password_verify($password, $user['password']) ? 'true' : 'false') . '<br/>'; // Print password verification result
+
+                if (true === password_verify($password, $user['password'])) {
                     // login successful
                     session_start();
                     $_SESSION['user_id'] = $user['id'];
-                    header("Location: dashboard.php");
+                    $_SESSION['username'] = $user['username']; // set the username in the session
+                    header("Location: login_read.php");
                     exit;
                 } else {
                     $errors[] = "Invalid password";
@@ -60,6 +65,7 @@ function Login() {
     }
     return $errors;
 }
+
 
 
 
@@ -120,7 +126,8 @@ function CreateAccount() {
             if ( !$result ) {
                 die( 'Query Failed' . mysqli_error() );
             } else {
-                echo "Account Created";
+                header("Location: login.php");
+                    exit;
             }
         }
     }
@@ -142,52 +149,114 @@ if ( !$result ) {
     }
 }
 
+function Account() {
+    global $connection;
+    if(isset($_SESSION['username'])){
+        $query = "SELECT * FROM users WHERE username = '" . $_SESSION['username'] . "'";
+        $result = mysqli_query($connection, $query);
+
+        if (!$result) {
+            die('Query FAILED' . mysqli_error($connection));
+        }
+
+        $row = mysqli_fetch_array($result);
+
+        if (isset($row['username'])) {
+            $username = $row['username'];
+        } else {
+            // Handle the case where username is not set in the row
+        }
+
+        if (isset($row['email'])) {
+            $email = $row['email'];
+        } else {
+            // Handle the case where email is not set in the row
+        }
+
+        $id = $row['id'];  // Add this line
+
+        // alte date de utilizator dacă sunt disponibile
+
+        return array('username' => $username, 'email' => $email, 'id' => $id);  // And this line
+    }else{
+        header("Location: login.php"); // Redirectionare către pagina de login dacă utilizatorul nu este autentificat
+        exit;
+    }
+}
+
+
+
+
 function UpdateTable() {
-    if ( isset( $_POST['submit'] ) ) { 
+    if (isset($_POST['submit'])) { 
         global $connection;
 
         $username = $_POST['username'];
         $email = $_POST['email'];
-        $password = $_POST['password']; // Remove call to validate()
+        $password = $_POST['password']; 
+        $password2 = $_POST['password2']; 
         $id = $_POST['id'];
 
-        $password = password_hash($password, PASSWORD_DEFAULT); // Hash the password before mysqli_real_escape_string()
+        if ($password !== $password2) {
+            echo "Passwords do not match!";
+            return;
+        }
+
+        $password = password_hash($password, PASSWORD_DEFAULT);  // Hash the password
 
         $query = $connection->prepare("UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?");
-        $query->bind_param("sssi", $username, $email, $password, $id);
+        $query->bind_param("sssi", $username, $email, $password, $id); 
 
-        $result = $query->execute();
-        if ( !$result ) {
-            die( "QUERY FAILED" . mysqli_error( $connection ) );
+        if (!$query->execute()) {
+            die('QUERY FAILED'. mysqli_error($connection));
         } else {
-            echo "Account Updated";
+            echo "Record Updated";
         }
+
+        $query->close();
     }
 }
 
-function DeleteRows() {
+function DeleteAccount() {
+    
+    global $connection;
+    $errors = array();
 
-    if ( isset( $_POST['submit'] ) ) {
-
-        global $connection;
-
-        $username = $_POST['username'];
-        $email = $_POST['email'];
+    if (isset($_POST['submit'])) {
         $password = $_POST['password'];
-        $id = $_POST['id'];
+        $username = $_SESSION['username'];
 
-        $query = "DELETE from users ";
-        $query .= "WHERE id = $id ";
+        $query = "SELECT password FROM users WHERE username = '$username'";
+        $result = mysqli_query($connection, $query);
 
-        $result = mysqli_query( $connection, $query );
-        if ( !$result ) {
-            die( "QUERY FAILED" . mysqli_error( $connection ) );
-        } else {
-            echo "Account Deleted";
+        if (!$result) {
+            die('Query FAILED' . mysqli_error($connection));
         }
 
+        $row = mysqli_fetch_assoc($result);
+        $hashed_password = $row['password'];
+
+        if (password_verify($password, $hashed_password)) {
+            $query = "DELETE FROM users WHERE username = '$username'";
+            $result = mysqli_query($connection, $query);
+
+            if (!$result) {
+                die('Query FAILED' . mysqli_error($connection));
+            } else {
+                session_unset();
+                session_destroy();
+                header("Location: login.php"); // Redirect to login page after account deletion
+                exit;
+            }
+        } else {
+            $errors[] = "Incorrect password";
+        }
     }
+
+    return $errors;
 }
+
+
 
 function ValidateErrors($errors) {
     if (!empty($errors)) {

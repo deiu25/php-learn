@@ -62,6 +62,8 @@
                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                             <button type="submit" name="submit" value="Register" class="btn btn-primary btn-lg">Register</button>
                                         </div>
+                                        <p class="text-center text-muted mt-4 mb-0">Have already an account? <a href="login.php"
+                                                 class="fw-bold text-body"><u>Login here</u></a></p>
 
                                     </form>
 

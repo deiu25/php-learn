@@ -1,5 +1,8 @@
-<?php include "db.php"; ?>
-<?php include "functions.php"; ?>
+<?php 
+session_start(); // add this line
+include "db.php"; 
+include "functions.php"; 
+?>
 
 <?php $errors = Login(); ?>
 
@@ -16,7 +19,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
+                                    <p class="text-center h1 fw-bold mt-5 mb-5 mx-1 mx-md-4 mt-4">Login</p>
 
                                     <form class="mx-1 mx-md-4" action="login.php" method="post">
 
@@ -39,7 +42,9 @@
                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                             <button type="submit" name="submit" value="Login" class="btn btn-primary btn-lg">LogIn</button>
                                         </div>
-
+                                            <div class="text-center">
+                                                <p>Not a member? <a href="login_create.php">Register</a></p>
+                                            </div>
                                     </form>
 
                                 </div>
