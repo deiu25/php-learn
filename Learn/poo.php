@@ -24,9 +24,29 @@ echo $bmw -> engine . " engine";                echo "<br><br>";
 
 
 if(method_exists("Car", "MoveWheels")) {
-    echo "The method exist";
+    echo "The Car method exist";
+} else {
+    echo "No";              echo "<br><br>";
+}
+
+
+
+class Plane {
+    
+}
+
+if(class_exists("Plane")) {
+    echo "The Plane class exist";
 } else {
     echo "No";
 }
+
+//Constructor
+function __construct(){
+    echo $this -> wheels = 10;
+}
+$bmw = new Car();
+
+//data accesss
 
 ?>
