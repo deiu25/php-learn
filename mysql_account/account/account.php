@@ -56,7 +56,7 @@ $userDetails = Account();
 						<li>
 							<a href="../login_update.php">
                                 <i class="glyphicon glyphicon-user"></i>
-                                Account Settings
+                                Update Account
                             </a>
 						</li>
 						<li>

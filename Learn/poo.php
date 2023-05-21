@@ -45,8 +45,22 @@ if(class_exists("Plane")) {
 function __construct(){
     echo $this -> wheels = 10;
 }
-$bmw = new Car();
+$bmw = new Car();           echo "<br><br>";
 
-//data accesss
+
+
+
+class Persoana {
+    public $nume; //props
+    public $varsta;
+    
+    public function Saluta() { //metoda
+        echo "Salut! Numele meu este " . $this -> nume;
+    }
+}
+
+$persoana1 = new Persoana; //obiect
+$persoana1 -> nume = "Ion.";
+$persoana1 -> Saluta();
 
 ?>
